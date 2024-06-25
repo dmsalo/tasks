@@ -1,0 +1,103 @@
+//import 'dart:ui';
+
+import 'package:flutter/material.dart';
+
+import '../models/task.dart';
+
+class PopupMenu extends StatelessWidget {
+  final Task task;
+  final VoidCallback cancelOrDeleteCallback;
+  final VoidCallback likeOrDislikeCallback;
+  final VoidCallback editTaskCallback;
+  final VoidCallback restoreTaskCallback;
+
+  const PopupMenu({
+    Key? key,
+    required this.task,
+    required this.cancelOrDeleteCallback,
+    required this.likeOrDislikeCallback,
+    required this.editTaskCallback,
+    required this.restoreTaskCallback,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton(
+      itemBuilder: task.isDeleted == false
+          ? ((context) => [
+                /*
+                PopupMenuItem(
+                  child: TextButton.icon(
+                    onPressed: editTaskCallback,
+                    icon: const Icon(Icons.edit),
+                    label: const Text('Edit'),
+                  ),
+                  onTap: null,
+                ),
+                */
+
+                PopupMenuItem(
+                  //-----------------------------
+
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: TextButton.icon(
+                      onPressed: editTaskCallback,
+                      icon: const Icon(Icons.edit),
+                      label: const Align(
+                          alignment: Alignment.centerLeft, child: Text('Edit')),
+                    ),
+                  ),
+                  onTap: null,
+
+                  //-------------------------------
+                ),
+                PopupMenuItem(
+                  child: TextButton.icon(
+                    onPressed: null,
+                    icon: task.isFavorite == false
+                        ? const Icon(Icons.bookmark_add_outlined)
+                        : const Icon(Icons.bookmark_remove),
+                    label: task.isFavorite == false
+                        ? const Text('Add to \nBookmarks')
+                        : const Text('Remove from \nBookmarks'),
+                  ),
+                  onTap: likeOrDislikeCallback,
+                ),
+                PopupMenuItem(
+                  child: TextButton.icon(
+                    onPressed: null,
+                    icon: const Icon(Icons.delete),
+                    label: const Text('Delete'),
+                  ),
+                  //onTap: () => _removeOrDeleteTask(context, task),
+
+                  onTap: cancelOrDeleteCallback,
+                ),
+              ])
+          : (context) => [
+                PopupMenuItem(
+                  child: TextButton.icon(
+                    onPressed: null,
+                    icon: const Icon(Icons.restore),
+                    //icon: const Icon(Icons.restore_from_trash),
+                    label: const Text('Restore'),
+                  ),
+                  //onTap: () => _removeOrDeleteTask(context, task),
+
+                  onTap: restoreTaskCallback,
+                ),
+                PopupMenuItem(
+                  child: TextButton.icon(
+                    onPressed: null,
+                    icon: const Icon(Icons.delete_forever),
+                    label: const Text('Delete Forever'),
+                  ),
+                  //onTap: () => _removeOrDeleteTask(context, task),
+
+                  onTap: cancelOrDeleteCallback,
+                ),
+              ],
+    );
+  }
+}

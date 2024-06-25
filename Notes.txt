@@ -1,0 +1,29 @@
+
+https://www.youtube.com/watch?v=LSdmWNZhGbA
+
+Install Extension: Pubspec Assit
+
+Open: pubspec.yaml
+Cntrl + Shift + P: => Pubspec Assist: -> Add/Update Dependencies
+: flutter_bloc,equatable
+
+==> dependencies:
+equatable: ^2.0.5
+flutter_bloc: ^8.1.2
+
+run: flutter pub get
+
+-------------
+
+Open: pubspec.yaml
+Cntrl + Shift + P: => Pubspec Assist: -> Add/Update Dependencies
+: hidrated_bloc
+
+Open: pubspec.yaml
+Cntrl + Shift + P: => Pubspec Assist: -> Add/Update Dependencies
+: path_provided
+
+------------------------------------
+
+flutter_bloc
+
